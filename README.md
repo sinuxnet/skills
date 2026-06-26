@@ -2,7 +2,7 @@
 
 # Sinuxnet Skills
 
-Agent skills for Claude Code focused on company knowledge management — import stories, commands, and files into a structured markdown knowledge repo your whole team can query.
+Agent skills for Claude Code — knowledge management, git workflows, and engineering utilities.
 
 ## Quickstart (30-second setup)
 
@@ -32,6 +32,16 @@ Ingests a story, command, or file path and places the knowledge into the right m
 ### `/import-knowledge-n-commit`
 
 Identical to `/import-knowledge` but auto-commits after applying all changes.
+
+### `/smart-commit`
+
+Analyzes all pending git changes, groups them into atomic commits by logical intent, and commits after your approval.
+
+- Reads your global commit convention for types, scopes, and message rules
+- Groups by diff content — not by directory — so mixed-purpose folders don't produce mixed commits
+- Surfaces ambiguous files for your input before proceeding
+- Shows the full commit plan at once; commits only on yes
+- Includes a commit body only when the change warrants one
 
 ## Why These Skills Exist
 

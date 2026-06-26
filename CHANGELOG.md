@@ -1,5 +1,11 @@
 # Sinuxnet Skills
 
+## 1.1.0
+
+### Minor Changes
+
+- **`smart-commit`**: New skill — analyzes all pending git changes, groups them into atomic commits following your commit convention, presents the full plan for approval, then executes. Surfaces ambiguous changes for user input before proceeding. Reads commit rules from a global convention file, not per-repo.
+
 ## 1.0.0
 
 ### Major Changes
