@@ -9,7 +9,25 @@ Ingest an Import Input (prose or file path) and place its knowledge into the rig
 
 ## Steps
 
-### 1. Read the Import Input
+### 1. Detect repo type and prepare docs/ directory
+
+Check if this is a **coding repo** by looking for:
+- `package.json`, `Cargo.toml`, `go.mod`, `pyproject.toml`, `setup.py`, `pom.xml`, `build.gradle`
+- `.git/` directory with source code
+
+If coding repo detected:
+- Check if `docs/` directory exists
+- If `docs/` does not exist, create it
+- Use `docs/` as the playground for new knowledge files
+
+If **documentation repo** (no coding markers found):
+- Skill is free to place files anywhere in the repo structure
+
+**Done when:** you've determined repo type and ensured `docs/` exists (if coding repo).
+
+---
+
+### 2. Read the Import Input
 
 If the user gave a file path, read the file. Accept any text-based format: `.md`, `.txt`, `.yaml`, `.sh`, `.log`, etc. If prose, take it as-is.
 
@@ -17,17 +35,17 @@ If the user gave a file path, read the file. Accept any text-based format: `.md`
 
 ---
 
-### 2. Orient in the repo
+### 3. Orient in the repo
 
 Read `README.md` first, then any folder-level `README.md` or index files you find. Then run `find . -name "*.md" | head -100` (or `tree -L 3 --dirsfirst`) to map the full structure.
 
-If the repo contains no structure (empty or a blank README), go to **Step 3**.
+If the repo contains no structure (empty or a blank README), go to **Step 4**.
 
 **Done when:** you have a clear map of where knowledge currently lives.
 
 ---
 
-### 3. Bootstrap *(empty repo only)*
+### 4. Bootstrap *(empty repo only)*
 
 Create seed folders and a `README.md` for each:
 
@@ -46,7 +64,7 @@ Note "Initialized base structure" in the Proposal.
 
 ---
 
-### 4. Redact
+### 5. Redact
 
 Strip **credentials, passwords, and secret tokens** from the Import Input before writing anything. IPs are safe — do not redact them.
 
@@ -56,9 +74,13 @@ Record every redaction: what type of secret was removed and from what context. T
 
 ---
 
-### 5. Extract and place
+### 6. Extract and place
 
 Extract every fact from the Import Input. Map each fact to a File Operation — create, edit, move, or delete a Knowledge Document. A single Import Input spanning multiple topics produces multiple File Operations; distribute facts to their natural homes.
+
+**For coding repos:** All new knowledge files should be created under `docs/` and its subdirectories (e.g., `docs/guides/`, `docs/reference/`). Decide the best subdirectory based on content type — the LLM will make the placement decision.
+
+**For documentation repos:** Place files naturally throughout the existing repo structure.
 
 For each proposed edit to an existing document:
 - Check for a **Conflict**: a new fact that contradicts current content. Flag it — it will get a `<!-- changed: reason -->` comment on execution.
@@ -70,7 +92,7 @@ For each fact where information is incomplete or missing:
 
 ---
 
-### 6. Propose
+### 7. Propose
 
 Show the user two parts and wait for approval before touching any file.
 
@@ -86,7 +108,7 @@ The user may approve as-is or correct inline ("yes but put this under `infra/k8s
 
 ---
 
-### 7. Execute
+### 8. Execute
 
 Apply every File Operation. For each created or edited Knowledge Document:
 
@@ -116,7 +138,7 @@ source: import-knowledge
 
 ---
 
-### 8. Suggest commit
+### 9. Suggest commit
 
 Output the exact commands for the user to run:
 
