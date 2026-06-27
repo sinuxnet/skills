@@ -1,5 +1,13 @@
 # Sinuxnet Skills
 
+## 1.2.0
+
+### Minor Changes
+
+- **`smart-commit`**: Embed commit convention into skill directory for worldwide portability. No longer requires local file path.
+
+- **`import-knowledge`**: Add repo type detection. Auto-creates `docs/` for coding repos and uses it as playground for new knowledge files. Documentation repos remain unrestricted.
+
 ## 1.1.0
 
 ### Minor Changes
