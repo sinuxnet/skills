@@ -6,9 +6,9 @@ disable-model-invocation: true
 
 # smart-commit
 
-Read every pending change in the working tree, group them into atomic commits that follow the convention at `/home/sinuxnet/projects/skills/git-commit-convention.md`, show the full plan, and execute on approval.
+Read every pending change in the working tree, group them into atomic commits that follow the embedded commit convention, show the full plan, and execute on approval.
 
-> **Convention reference:** `/home/sinuxnet/projects/skills/git-commit-convention.md`
+> **Convention reference:** `convention.md` (embedded in skill directory)
 > Load this file before Step 3. Every type, scope, subject rule, and body guideline lives there.
 
 ---
@@ -27,7 +27,7 @@ If the user's invocation named any files to exclude, drop them now and never rev
 
 ### 2. Load convention
 
-Read `/home/sinuxnet/projects/skills/git-commit-convention.md`.
+Read `convention.md` from the skill directory.
 
 **Done when:** you know every valid type, scope rule, subject format, body structure, and breaking-change marker.
 
